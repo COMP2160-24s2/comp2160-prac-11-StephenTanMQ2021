@@ -149,7 +149,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ground
       value: 
-      objectReference: {fileID: 1542462235}
+      objectReference: {fileID: 2010219392}
     - target: {fileID: 8399291161501472776, guid: b96044efa2ae54750ad24e39e1352865,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -682,7 +682,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184f488bf1486423baadff9ee0a0bade, type: 3}
---- !u!65 &1542462235 stripped
+--- !u!65 &2010219392 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 8974830042299922509, guid: 184f488bf1486423baadff9ee0a0bade,
     type: 3}
@@ -818,13 +818,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4601777957755373507}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 14.31, z: 0}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
