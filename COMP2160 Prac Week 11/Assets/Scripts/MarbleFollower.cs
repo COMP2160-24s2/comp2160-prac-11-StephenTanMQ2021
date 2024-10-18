@@ -5,15 +5,12 @@ using UnityEngine;
 public class MarbleFollower : MonoBehaviour
 {
     [SerializeField] Transform marble;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Transform secondTarget;
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = marble.position;
+        Vector3 midPoint = (marble.position + secondTarget.position)/2;
+        transform.position = new Vector3(midPoint.x, 0, midPoint.z);
     }
 }

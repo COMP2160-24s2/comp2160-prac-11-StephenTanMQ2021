@@ -23,7 +23,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] bool deltaCrosshairMovement = false;
     [SerializeField] BoxCollider ground;
+    [SerializeField] float mouseSensitivity = 10f;
     private Plane boardPlane;
+    Vector2 mousePos = new Vector2(0, 0);
 
     #region Singleton
     static private UIManager instance;
@@ -90,26 +92,28 @@ public class UIManager : MonoBehaviour
 
     private void MoveCrosshair()
     {
-        Vector2 mousePos = new Vector2(0,0);
         if (deltaCrosshairMovement)
         {
             mousePos = mousePos + deltaAction.ReadValue<Vector2>();
+            crosshair.position = new Vector3(mousePos.x, crosshair.position.y, mousePos.y) / mouseSensitivity;
+
+            // Clamp
+            float x = Mathf.Clamp(Camera.main.WorldToScreenPoint(crosshair.position).x, 0f, Camera.main.pixelWidth);
+            float y = Mathf.Clamp(Camera.main.WorldToScreenPoint(crosshair.position).y, 0f, Camera.main.pixelHeight);
+            Vector3 treatedPosition = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 9.99f));
+            crosshair.position = new Vector3(treatedPosition.x, crosshair.position.y, treatedPosition.z);
         }
         else
         {
             mousePos = mouseAction.ReadValue<Vector2>();
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+            if (boardPlane.Raycast(ray, out float enter))
+            {
+                Vector3 hitPoint = ray.GetPoint(enter);
+                crosshair.position = hitPoint;
+            }
         }
-
-        // FIXME: Move the crosshair position to the mouse position (in world coordinates)
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-
-        if (boardPlane.Raycast(ray, out float enter))
-        {
-            Vector3 hitPoint = ray.GetPoint(enter);
-            crosshair.position = hitPoint;
-        }
-
-        Debug.Log(mousePos);
     }
 
     private void SelectTarget()
